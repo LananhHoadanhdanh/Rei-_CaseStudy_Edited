@@ -1,6 +1,7 @@
 package menu;
 
 import model.Account;
+import service.create_object.UserCreate;
 import service.manage.ReceiptManage;
 import service.manage.RoomManage;
 import service.manage.UserManage;
@@ -46,7 +47,7 @@ public class MainMenuOption {
                     if (Account.login(username, password)) {
                         UserManage.getUserInstance().deleteUser(username);
                         System.out.println("Nhập thông tin mới.");
-                        UserManage.getUserInstance().add(UserManage.createUser());
+                        UserManage.getUserInstance().add(UserCreate.createUser());
                         System.out.println("Đã cập nhật thông tin thành công.");
                     } else {
                         System.err.println("Mật khẩu sai!");

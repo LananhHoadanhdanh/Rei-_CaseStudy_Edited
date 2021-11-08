@@ -29,7 +29,6 @@ public class ReceiptManage{
         receiptList.add(receipt);
         writeReceiptToFile();
         readReceiptFromFile();
-
     }
 
     public void delete(String id) throws IOException, ParseException {
@@ -114,58 +113,5 @@ public class ReceiptManage{
         }
         bufferedReader.close();
         fileReader.close();
-    }
-
-    public static Receipt createReceipt() throws ParseException, IOException {
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("Nhập số hóa đơn: ");
-        String receiptId = scanner.nextLine();
-        //ReceiptManage.getReceiptInstance().getReceiptList();
-        while (ReceiptManage.getReceiptInstance().findIndexById(receiptId) != -1) {
-            System.out.println("Số hóa đơn đã tồn tại, vui lòng nhập lại");
-            receiptId = scanner.nextLine();
-        }
-
-        System.out.print("Nhập tên khách hàng: ");
-        String customerName = scanner.nextLine();
-
-        System.out.print("Nhập tên nhân viên: ");
-        String staffName = scanner.nextLine();
-
-        System.out.println("Nhập ngày check-in (định dạng dd/MM/yyyy): ");
-        String checkInTime = scanner.nextLine();
-        while (!Validation.validateString(checkInTime, Validation.DATE_REGEX)) {
-            System.out.println("Ngày không hợp lệ. Vui lòng nhập lại.");
-            checkInTime = scanner.nextLine();
-        }
-        System.out.println("Nhập ngày check-out (định dạng dd/MM/yyyy): ");
-        String checkOutTime = scanner.nextLine();
-        while (!Validation.validateString(checkOutTime, Validation.DATE_REGEX) || DateCalculator.dateCompare(checkInTime, checkOutTime) > 0) {
-            if (!Validation.validateString(checkOutTime, Validation.DATE_REGEX)) {
-                System.err.println("Ngày không hợp lệ. Vui lòng nhập lại.");
-            }
-            if (DateCalculator.dateCompare(checkInTime, checkOutTime) > 0) {
-                System.err.println("Ngày check-out phải sau ngày check-in!");
-            }
-            checkInTime = scanner.nextLine();
-        }
-
-        System.out.print("Nhập số phòng: ");
-        int roomId = -1;
-        while (RoomManage.getRoomInstance().findIndexById(roomId) == -1 || roomId < 0) {
-            Scanner sc = new Scanner(System.in);
-            try {
-                roomId = sc.nextInt();
-                if (RoomManage.getRoomInstance().findIndexById(roomId) == -1) {
-                    System.err.println("Phòng không tồn tại. Vui lòng nhập lại.");
-                }
-                if (roomId < 0) {
-                    System.err.println("Số phòng không hợp lệ. Vui lòng nhập lại.");
-                }
-            } catch (InputMismatchException e){
-                System.err.println("Dữ liệu nhập vào không hợp lệ. Vui lòng nhập lại");
-            }
-        }
-        return new Receipt(receiptId, customerName, staffName, checkInTime, checkOutTime, roomId);
     }
 }

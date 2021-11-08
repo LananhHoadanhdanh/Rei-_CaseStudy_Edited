@@ -1,6 +1,6 @@
 package model;
 
-import service.manage.RoomManage;
+import service.create_object.UserCreate;
 import service.manage.UserManage;
 
 import java.io.IOException;
@@ -10,7 +10,7 @@ import java.util.Scanner;
 public class Account {
 
     public static void register() throws IOException {
-        UserManage.getUserInstance().add(UserManage.createUser());
+        UserManage.getUserInstance().add(UserCreate.createUser());
     }
 
     public static boolean login(String username, String password) throws IOException {

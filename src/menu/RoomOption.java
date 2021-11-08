@@ -2,6 +2,7 @@ package menu;
 
 import model.Room;
 import model.User;
+import service.create_object.RoomCreate;
 import service.manage.RoomManage;
 import service.manage.UserManage;
 
@@ -14,8 +15,7 @@ public class RoomOption {
     private static RoomOption roomOption;
 
     private RoomOption() {
-
-    };
+    }
 
     public static RoomOption getRoomOption() {
         if (roomOption == null) roomOption = new RoomOption();
@@ -77,7 +77,7 @@ public class RoomOption {
     }
 
     public void roomOptionAdd() throws IOException, ParseException {
-        RoomManage.getRoomInstance().add(RoomManage.createRoom());
+        RoomManage.getRoomInstance().add(RoomCreate.createRoom());
     }
 
     public void roomOptionUpdate() throws IOException, ParseException {
@@ -96,7 +96,7 @@ public class RoomOption {
         }
         RoomManage.getRoomInstance().delete(roomId);
         System.out.println("Nhập thông tin mới: ");
-        RoomManage.getRoomInstance().add(RoomManage.createRoom());
+        RoomManage.getRoomInstance().add(RoomCreate.createRoom());
         System.out.println("Cập nhật thành công!!!");
     }
 
