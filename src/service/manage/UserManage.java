@@ -1,12 +1,9 @@
 package service.manage;
 
 import model.User;
-import model.Validation;
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.InputMismatchException;
-import java.util.Scanner;
 
 public class UserManage {
     private static ArrayList<User> usersList;
@@ -62,16 +59,16 @@ public class UserManage {
     public static void writeUserToFile() throws IOException {
         FileWriter fileWriter = new FileWriter("src/service/userManageFile.csv");
         BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
-        String str = "Họ và tên,Tuổi,Số điện thoại,Email,Tên đăng nhập,Password";
+        StringBuilder str = new StringBuilder("Họ và tên,Tuổi,Số điện thoại,Email,Tên đăng nhập,Password");
         for (User user : usersList) {
-            str += "\n" + user.getFullName() + ",";
-            str += user.getAge() + ",";
-            str += user.getPhoneNumber() + ",";
-            str += user.getEmail() + ",";
-            str += user.getUsername() + ",";
-            str += user.getPassword();
+            str.append("\n").append(user.getFullName()).append(",");
+            str.append(user.getAge()).append(",");
+            str.append(user.getPhoneNumber()).append(",");
+            str.append(user.getEmail()).append(",");
+            str.append(user.getUsername()).append(",");
+            str.append(user.getPassword());
         }
-        bufferedWriter.write(str);
+        bufferedWriter.write(str.toString());
         bufferedWriter.close();
     }
 

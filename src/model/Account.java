@@ -13,7 +13,7 @@ public class Account {
         UserManage.getUserInstance().add(UserCreate.createUser());
     }
 
-    public static boolean login(String username, String password) throws IOException {
+    public static boolean login(String username, String password) {
         int index = UserManage.getUserInstance().findIndexByUsername(username);
         return UserManage.getUserInstance().getUserList().get(index).getPassword().equals(password);
     }

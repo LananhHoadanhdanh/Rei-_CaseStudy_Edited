@@ -20,7 +20,7 @@ public class RoomOption {
         return roomOption;
     }
 
-    public void roomOptionCheckIn(String username) throws IOException {
+    public void roomOptionCheckIn(String username) {
         int roomId = RoomCreate.createOldRoomId();
         User user = UserManage.getUserInstance().getUserList().get(UserManage.getUserInstance().findIndexByUsername(username));
         user.doCheckInForCustomer(roomId);
@@ -32,7 +32,7 @@ public class RoomOption {
         user.doCheckOutForCustomer(roomId);
     }
 
-    public void roomOptionClean(String username) throws IOException {
+    public void roomOptionClean(String username) {
         int roomId = RoomCreate.createOldRoomId();
         User user = UserManage.getUserInstance().getUserList().get(UserManage.getUserInstance().findIndexByUsername(username));
         user.cleanTheRoom(roomId);
@@ -50,12 +50,12 @@ public class RoomOption {
         System.out.println("Cập nhật thành công!!!");
     }
 
-    public void roomOptionInformationById() throws IOException {
+    public void roomOptionInformationById() {
         int roomId = RoomCreate.createOldRoomId();
         RoomManage.getRoomInstance().getInformationById(roomId);
     }
 
-    public void roomOptionDeleteById() throws IOException, ParseException {
+    public void roomOptionDeleteById() throws IOException {
         int roomId = RoomCreate.createOldRoomId();
         int index = RoomManage.getRoomInstance().findIndexById(roomId);
         String status = RoomManage.getRoomInstance().getRoomList().get(index).getStatus();

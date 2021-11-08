@@ -4,12 +4,8 @@ import model.DateCalculator;
 import model.Receipt;
 import model.Validation;
 import service.manage.ReceiptManage;
-import service.manage.RoomManage;
-import service.manage.UserManage;
 
-import java.io.IOException;
 import java.text.ParseException;
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class ReceiptCreate {
@@ -45,7 +41,7 @@ public class ReceiptCreate {
         return date;
     }
 
-    public static Receipt createReceipt() throws ParseException, IOException {
+    public static Receipt createReceipt() throws ParseException {
         Scanner scanner = new Scanner(System.in);
 
         String receiptId = createNewReceiptId();

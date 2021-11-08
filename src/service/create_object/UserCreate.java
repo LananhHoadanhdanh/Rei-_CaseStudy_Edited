@@ -4,7 +4,6 @@ import model.User;
 import model.Validation;
 import service.manage.UserManage;
 
-import java.io.IOException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -85,7 +84,7 @@ public class UserCreate {
         return email;
     }
 
-    public static User createUser() throws IOException {
+    public static User createUser(){
         Scanner scanner = new Scanner(System.in);
         String username = createRegisterUserName();
         String password = createRegisterPassword();

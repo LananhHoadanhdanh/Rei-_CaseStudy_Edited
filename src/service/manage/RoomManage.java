@@ -6,8 +6,6 @@ import java.io.*;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.InputMismatchException;
-import java.util.Scanner;
 
 public class RoomManage {
     private static ArrayList<Room> roomList;
@@ -32,7 +30,7 @@ public class RoomManage {
         readRoomFromFile();
     }
 
-    public void delete(int id) throws IOException, ParseException {
+    public void delete(int id) throws IOException {
         roomList.remove(findIndexById(id));
         writeRoomToFile();
         readRoomFromFile();
@@ -87,7 +85,7 @@ public class RoomManage {
         System.out.println();
     }
 
-    public void getInformationById(int id) throws IOException {
+    public void getInformationById(int id) {
         Room room = RoomManage.getRoomInstance().getRoomList().get(RoomManage.getRoomInstance().findIndexById(id));
         System.out.println();
         System.out.println("______________________***  THÔNG TIN VỀ PHÒNG "+ id +" ***______________________");
@@ -102,15 +100,15 @@ public class RoomManage {
         Collections.sort(roomList);
         FileWriter fileWriter = new FileWriter("src/service/roomManageFile.csv");
         BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
-        String str = "Số phòng,Giá thuê phòng,Trạng thái hiện tại,Số giường ngủ, Số nhà vệ sinh";
+        StringBuilder str = new StringBuilder("Số phòng,Giá thuê phòng,Trạng thái hiện tại,Số giường ngủ, Số nhà vệ sinh");
         for (Room room : roomList) {
-            str += "\n" + room.getRoomID() + ",";
-            str += room.getPrice() + ",";
-            str += room.getStatus() + ",";
-            str += room.getNumberOfBed() + ",";
-            str += room.getNumberOfToilet();
+            str.append("\n").append(room.getRoomID()).append(",");
+            str.append(room.getPrice()).append(",");
+            str.append(room.getStatus()).append(",");
+            str.append(room.getNumberOfBed()).append(",");
+            str.append(room.getNumberOfToilet());
         }
-        bufferedWriter.write(str);
+        bufferedWriter.write(str.toString());
         bufferedWriter.close();
     }
 

@@ -2,7 +2,6 @@ package service.manage;
 
 import model.DateCalculator;
 import model.Receipt;
-import model.Validation;
 
 import java.io.*;
 import java.text.ParseException;
@@ -42,8 +41,8 @@ public class ReceiptManage{
         System.out.println();
         System.out.println("__________________________________*** DANH SÁCH TOÀN BỘ HÓA ĐƠN ***__________________________________");
         System.out.printf("%-15s %-20s %-20s %-15s %-15s %-15s %n", "Số hóa đơn", "Khách hàng", "Nhân viên", "Ngày check-in", "Ngày check-out", "Tổng tiền");
-        for (int i = 0; i < receiptList.size(); i++) {
-            System.out.println(receiptList.get(i));
+        for (Receipt receipt : receiptList) {
+            System.out.println(receipt);
         }
         System.out.println("_____________________________________________________________________________________________________");
         System.out.println();
@@ -80,18 +79,18 @@ public class ReceiptManage{
         Collections.sort(receiptList);
         FileWriter fileWriter = new FileWriter("src/service/receiveManageFile.csv");
         BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
-        String str = "Số hóa đơn,Tên khách hàng,Tên nhân viên,Số phòng, Giờ check-in,Giờ check-out,Tổng số tiền";
+        StringBuilder str = new StringBuilder("Số hóa đơn,Tên khách hàng,Tên nhân viên,Số phòng, Giờ check-in,Giờ check-out,Tổng số tiền");
         for (Receipt receipt : receiptList) {
-            str += "\n";
-            str += receipt.getReceiptID() + ",";
-            str += receipt.getCustomerName() + ",";
-            str += receipt.getStaffName() + ",";
-            str += receipt.getRoomId() + ",";
-            str += receipt.getCheckInTime() + ",";
-            str += receipt.getCheckOutTime() + ",";
-            str += receipt.getTotalPrice();
+            str.append("\n");
+            str.append(receipt.getReceiptID()).append(",");
+            str.append(receipt.getCustomerName()).append(",");
+            str.append(receipt.getStaffName()).append(",");
+            str.append(receipt.getRoomId()).append(",");
+            str.append(receipt.getCheckInTime()).append(",");
+            str.append(receipt.getCheckOutTime()).append(",");
+            str.append(receipt.getTotalPrice());
         }
-        bufferedWriter.write(str);
+        bufferedWriter.write(str.toString());
         bufferedWriter.close();
     }
 

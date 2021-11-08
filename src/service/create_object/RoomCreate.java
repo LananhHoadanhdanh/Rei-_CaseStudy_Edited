@@ -3,7 +3,6 @@ package service.create_object;
 import model.Room;
 import service.manage.RoomManage;
 
-import java.io.IOException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -98,7 +97,7 @@ public class RoomCreate {
         return numberOfToilet;
     }
 
-    public static Room createRoom() throws IOException {
+    public static Room createRoom() {
         int roomId = createNewRoomId();
         System.out.print("Nhập giá thuê phòng: ");
         int price = createPrice();
