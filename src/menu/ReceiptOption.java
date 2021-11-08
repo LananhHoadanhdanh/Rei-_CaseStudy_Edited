@@ -1,15 +1,11 @@
 package menu;
 
 import model.DateCalculator;
-import model.Validation;
 import service.create_object.ReceiptCreate;
-import service.create_object.RoomCreate;
 import service.manage.ReceiptManage;
 
 import java.io.IOException;
 import java.text.ParseException;
-import java.util.InputMismatchException;
-import java.util.Scanner;
 
 public class ReceiptOption {
 
@@ -36,8 +32,6 @@ public class ReceiptOption {
     }
 
     public void receiptOptionFindByDay() throws ParseException, IOException {
-        Scanner scanner = new Scanner(System.in);
-
         System.out.println("Nhập ngày check-in (định dạng dd/MM/yyyy): ");
         String startTime = ReceiptCreate.createNewDate();
 

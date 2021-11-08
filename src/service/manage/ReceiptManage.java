@@ -40,12 +40,12 @@ public class ReceiptManage{
     public void displayAllReceipt() {
         Collections.sort(receiptList);
         System.out.println();
-        System.out.println("________________________________________________*** DANH SÁCH TOÀN BỘ HÓA ĐƠN ***_______________________________________________");
+        System.out.println("__________________________________*** DANH SÁCH TOÀN BỘ HÓA ĐƠN ***__________________________________");
         System.out.printf("%-15s %-20s %-20s %-15s %-15s %-15s %n", "Số hóa đơn", "Khách hàng", "Nhân viên", "Ngày check-in", "Ngày check-out", "Tổng tiền");
         for (int i = 0; i < receiptList.size(); i++) {
             System.out.println(receiptList.get(i));
         }
-        System.out.println("______________________________________________________________________________________________________");
+        System.out.println("_____________________________________________________________________________________________________");
         System.out.println();
     }
 
@@ -61,18 +61,17 @@ public class ReceiptManage{
         Collections.sort(receiptList);
         int sumTotal = 0;
         System.out.println();
-        System.out.println("__________________*** DANH SÁCH HÓA ĐƠN TỪ NGÀY " + startDay + " ĐẾN NGÀY " + endDay + " ***_________________");
+        System.out.println("__________________*** DANH SÁCH HÓA ĐƠN TỪ NGÀY " + startDay + " ĐẾN NGÀY " + endDay + " ***__________________");
         System.out.printf("%-15s %-20s %-20s %-15s %-15s %-15s %n", "Số hóa đơn", "Khách hàng", "Nhân viên", "Ngày check-in", "Ngày check-out", "Tổng tiền");
-        for (int i = 0; i < receiptList.size(); i++) {
-            Receipt receipt = receiptList.get(i);
+        for (Receipt receipt : receiptList) {
             int startCompare = DateCalculator.dateCompare(receipt.getCheckOutTime(), startDay);
             int endCompare = DateCalculator.dateCompare(receipt.getCheckOutTime(), endDay);
-            if (startCompare >= 0 && endCompare <=0) {
+            if (startCompare >= 0 && endCompare <= 0 || startDay.equals(receipt.getCheckInTime()) || endDay.equals(receipt.getCheckOutTime())) {
                 sumTotal += receipt.getTotalPrice();
                 System.out.println(receipt);
             }
         }
-        System.out.println("___________________________________________________________________________________________________");
+        System.out.println("____________________________________________________________________________________________________");
         System.out.println("Tổng số tiền: " + sumTotal);
         System.out.println();
     }

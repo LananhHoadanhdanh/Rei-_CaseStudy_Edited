@@ -26,8 +26,4 @@ public class DateCalculator {
         Date dateEnd = simpleDateFormat.parse(endDate);
         return dateStart.compareTo(dateEnd);
     }
-
-    public static void main(String[] args) throws ParseException {
-        System.out.println(dateCompare("20/11/2021", "20/10/2021"));
-    }
 }

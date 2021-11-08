@@ -49,7 +49,6 @@ public class RoomCreate {
     }
 
     public static int createPrice() {
-        System.out.print("Nhập giá thuê phòng: ");
         int price = -1;
         while (price < 0){
             Scanner sc = new Scanner(System.in);
@@ -101,6 +100,7 @@ public class RoomCreate {
 
     public static Room createRoom() throws IOException {
         int roomId = createNewRoomId();
+        System.out.print("Nhập giá thuê phòng: ");
         int price = createPrice();
         int numberOfBed = createNumberOfBed();
         int numberOfToilet = createNumberOfToilet();

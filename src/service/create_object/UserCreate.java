@@ -9,10 +9,20 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class UserCreate {
+    public static String createLoginUserName() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Nhập tên đăng nhập: ");
+        String username = scanner.nextLine();
+        while (UserManage.getUserInstance().findIndexByUsername(username) == -1 || !Validation.validateString(username, Validation.LOGIN_NAME_REGEX)) {
+            System.err.println("Tên đăng nhập không đúng hoặc không hợp lệ. Vui lòng nhập lại. (8-16 kí tự, không gồm kí tự đặc biệt)");
+            username = scanner.nextLine();
+        }
+        return username;
+    }
 
     public static String createRegisterUserName() {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Nhập tên đăng nhập: ");
+        System.out.print("Nhập tên đăng nhập: ");
         String username = scanner.nextLine();
         boolean isValid = Validation.validateString(username, Validation.LOGIN_NAME_REGEX);
         boolean isExist = (UserManage.getUserInstance().findIndexByUsername(username) != -1);
@@ -25,20 +35,9 @@ public class UserCreate {
         return username;
     }
 
-    public static String createLoginUserName() {
+    public static String createRegisterPassword() {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Nhập tên đăng nhập: ");
-        String username = scanner.nextLine();
-        while (UserManage.getUserInstance().findIndexByUsername(username) == -1 || !Validation.validateString(username, Validation.LOGIN_NAME_REGEX)) {
-            System.err.println("Tên đăng nhập không đúng hoặc không hợp lệ. Vui lòng nhập lại. (8-16 kí tự, không gồm kí tự đặc biệt)");
-            username = scanner.nextLine();
-        }
-        return username;
-    }
-
-    public static String createPassword() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Nhập mật khẩu: ");
+        System.out.print("Nhập mật khẩu: ");
         String password = scanner.nextLine();
         while (!Validation.validateString(password, Validation.PASSWORD_REGEX)) {
             System.err.println("Chưa hợp lệ. Mật khẩu gồm từ 8-16 kí tự, không gồm kí tự đặc biệt.");
@@ -48,7 +47,7 @@ public class UserCreate {
     }
 
     public static int createAge() {
-        System.out.println("Nhập tuổi.");
+        System.out.print("Nhập tuổi.");
         int age = 17 ;
         while (age < 18){
             Scanner scanner = new Scanner(System.in);
@@ -89,7 +88,7 @@ public class UserCreate {
     public static User createUser() throws IOException {
         Scanner scanner = new Scanner(System.in);
         String username = createRegisterUserName();
-        String password = createPassword();
+        String password = createRegisterPassword();
         String name = scanner.nextLine();
         int age = createAge();
         String phoneNumber = createPhoneNumber();

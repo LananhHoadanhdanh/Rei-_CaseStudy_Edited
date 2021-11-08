@@ -71,9 +71,6 @@ public class ManageOption {
                 case 4:
                     receiptOption.receiptOptionFindByDay();
                     break;
-                case 5:
-                    ReceiptManage.writeReceiptToFile();
-                    break;
             }
         }
     }

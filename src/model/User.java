@@ -1,5 +1,6 @@
 package model;
 
+import service.create_object.ReceiptCreate;
 import service.manage.ReceiptManage;
 import service.manage.RoomManage;
 
@@ -79,45 +80,40 @@ public class User {
         return String.format("%-20s %-10d %-20s %-25s", fullName, age, phoneNumber, email);
     }
 
-    public void doCheckInForCustomer(int roomId) throws IOException {
-        if (RoomManage.getRoomInstance().getRoomList().get(RoomManage.getRoomInstance().findIndexById(roomId)).doCheckIn()) {
+    public void doCheckInForCustomer(int roomId){
+        int roomIndex = RoomManage.getRoomInstance().findIndexById(roomId);
+        if (RoomManage.getRoomInstance().getRoomList().get(roomIndex).doCheckIn()) {
             System.out.println("Đã hoàn tất thủ tục check-in. Thời gian: " + java.time.LocalDate.now());
         } else {
-            System.err.println("Không thể hoàn tất thủ tục check-in. Phòng đang ở trạng thái: " + RoomManage.getRoomInstance().getRoomList().get(RoomManage.getRoomInstance().findIndexById(roomId)).getStatus());
+            System.err.println("Không thể hoàn tất thủ tục check-in. Phòng đang ở trạng thái: " + RoomManage.getRoomInstance().getRoomList().get(roomIndex).getStatus());
         }
     }
 
     public void doCheckOutForCustomer(int roomId) throws IOException, ParseException {
-        if (RoomManage.getRoomInstance().getRoomList().get(RoomManage.getRoomInstance().findIndexById(roomId)).doCheckOut()) {
+        int roomIndex = RoomManage.getRoomInstance().findIndexById(roomId);
+        if (RoomManage.getRoomInstance().getRoomList().get(roomIndex).doCheckOut()) {
             System.out.println("Đã hoàn tất thủ tục check-out. Thời gian: " + java.time.LocalDate.now());
-
             Scanner scanner = new Scanner(System.in);
-            System.out.print("Nhập số hóa đơn: ");
-            String receiptId = scanner.nextLine();
-            //ReceiptManage.getReceiptInstance().getReceiptList();
-            while (ReceiptManage.getReceiptInstance().findIndexById(receiptId) != -1) {
-                System.out.println("Số hóa đơn đã tồn tại, vui lòng nhập lại");
-                receiptId = scanner.nextLine();
-            }
+            String receiptId = ReceiptCreate.createNewReceiptId();
             System.out.print("Nhập tên khách hàng: ");
             String customerName = scanner.nextLine();
             String staffName = this.getFullName();
-            String checkInTime = RoomManage.getRoomInstance().getRoomList().get(RoomManage.getRoomInstance().findIndexById(roomId)).getLastCheckIn();
-            String checkOutTime = RoomManage.getRoomInstance().getRoomList().get(RoomManage.getRoomInstance().findIndexById(roomId)).getLastCheckOut();
-            //ReceiptManage.getReceiptInstance().getReceiptList();
+            String checkInTime = RoomManage.getRoomInstance().getRoomList().get(roomIndex).getLastCheckIn();
+            String checkOutTime = RoomManage.getRoomInstance().getRoomList().get(roomIndex).getLastCheckOut();
             Receipt receipt = new Receipt(receiptId, customerName, staffName, checkInTime, checkOutTime, roomId);
             ReceiptManage.getReceiptInstance().add(receipt);
-
+            System.out.println("Đã phát hành hóa đơn.");
         } else {
-            System.err.println("Không thể hoàn tất thủ tục check-out. Phòng đang ở trạng thái: " + RoomManage.getRoomInstance().getRoomList().get(RoomManage.getRoomInstance().findIndexById(roomId)).getStatus());
+            System.err.println("Không thể hoàn tất thủ tục check-out. Phòng đang ở trạng thái: " + RoomManage.getRoomInstance().getRoomList().get(roomIndex).getStatus());
         }
     }
 
-    public void cleanTheRoom(int roomId) throws IOException {
-        if (RoomManage.getRoomInstance().getRoomList().get(RoomManage.getRoomInstance().findIndexById(roomId)).cleanTheRoom()) {
+    public void cleanTheRoom(int roomId) {
+        int roomIndex = RoomManage.getRoomInstance().findIndexById(roomId);
+        if (RoomManage.getRoomInstance().getRoomList().get(roomIndex).cleanTheRoom()) {
             System.out.println("Đã dọn dẹp xong.");
         } else {
-            System.err.println("Không thể dọn dẹp. Phòng đang ở trạng thái: " + RoomManage.getRoomInstance().getRoomList().get(RoomManage.getRoomInstance().findIndexById(roomId)).getStatus());
+            System.err.println("Không thể dọn dẹp. Phòng đang ở trạng thái: " + RoomManage.getRoomInstance().getRoomList().get(roomIndex).getStatus());
         }
     }
 }

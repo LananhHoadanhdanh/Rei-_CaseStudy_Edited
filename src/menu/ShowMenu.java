@@ -39,7 +39,6 @@ public class ShowMenu {
         System.out.println("2. Sửa thông tin hóa đơn theo số hóa đơn");
         System.out.println("3. Xóa hóa đơn");
         System.out.println("4. Tìm và tính tổng tiền hóa đơn theo khoảng thời gian");
-        System.out.println("5. Xuất danh sách hóa đơn ra file");
         System.out.println("0. Thoát khỏi menu quản lý hóa đơn");
     }
 }
