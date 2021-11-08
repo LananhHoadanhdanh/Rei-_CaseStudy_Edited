@@ -84,7 +84,7 @@ public class UserCreate {
         return email;
     }
 
-    public static User createUser(){
+    public static User createUser() {
         Scanner scanner = new Scanner(System.in);
         String username = createRegisterUserName();
         String password = createRegisterPassword();
