@@ -8,8 +8,9 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class UserCreate {
+    public static final Scanner scanner = new Scanner(System.in);
+
     public static String createLoginUserName() {
-        Scanner scanner = new Scanner(System.in);
         System.out.print("Nhập tên đăng nhập: ");
         String username = scanner.nextLine();
         while (UserManage.getUserInstance().findIndexByUsername(username) == -1 || !Validation.validateString(username, Validation.LOGIN_NAME_REGEX)) {
@@ -20,7 +21,6 @@ public class UserCreate {
     }
 
     public static String createRegisterUserName() {
-        Scanner scanner = new Scanner(System.in);
         System.out.print("Nhập tên đăng nhập: ");
         String username = scanner.nextLine();
         boolean isValid = Validation.validateString(username, Validation.LOGIN_NAME_REGEX);
@@ -35,7 +35,6 @@ public class UserCreate {
     }
 
     public static String createRegisterPassword() {
-        Scanner scanner = new Scanner(System.in);
         System.out.print("Nhập mật khẩu: ");
         String password = scanner.nextLine();
         while (!Validation.validateString(password, Validation.PASSWORD_REGEX)) {
@@ -46,10 +45,9 @@ public class UserCreate {
     }
 
     public static int createAge() {
-        System.out.print("Nhập tuổi.");
+        System.out.print("Nhập tuổi: ");
         int age = 17 ;
         while (age < 18){
-            Scanner scanner = new Scanner(System.in);
             try {
                 age = scanner.nextInt();
                 if(age < 18){
@@ -63,7 +61,6 @@ public class UserCreate {
     }
 
     public static String createPhoneNumber() {
-        Scanner scanner = new Scanner(System.in);
         System.out.print("Nhập số điện thoại: ");
         String phoneNumber = scanner.nextLine();
         while (!Validation.validateString(phoneNumber, Validation.PHONE_NUMBER_REGEX)) {
@@ -74,7 +71,6 @@ public class UserCreate {
     }
 
     public static String createEmail() {
-        Scanner scanner = new Scanner(System.in);
         System.out.print("Nhập địa chỉ email: ");
         String email = scanner.nextLine();
         while (!Validation.validateString(email, Validation.EMAIL_REGEX)) {
@@ -85,13 +81,13 @@ public class UserCreate {
     }
 
     public static User createUser() {
-        Scanner scanner = new Scanner(System.in);
         String username = createRegisterUserName();
         String password = createRegisterPassword();
+        System.out.print("Nhập họ và tên: ");
         String name = scanner.nextLine();
-        int age = createAge();
         String phoneNumber = createPhoneNumber();
         String email = createEmail();
+        int age = createAge();
         return new User(name, age, phoneNumber, email, username, password);
     }
 }
