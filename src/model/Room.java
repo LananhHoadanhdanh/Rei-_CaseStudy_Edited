@@ -1,5 +1,8 @@
 package model;
 
+import service.manage.RoomManage;
+
+import java.io.IOException;
 import java.time.format.DateTimeFormatter;
 
 public class Room implements Comparable<Room>{
@@ -97,25 +100,31 @@ public class Room implements Comparable<Room>{
         return String.format("%-10d %-10d %-20s %-15d %-15d", roomID, price, status, numberOfBed, numberOfToilet);
     }
 
-    public boolean doCheckIn() {
+    public boolean doCheckIn() throws IOException {
         if (this.getStatus().equals(Room.READY)) {
             this.setStatus(Room.OCCUPIED);
             this.setLastCheckIn(java.time.LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+            RoomManage.writeRoomToFile();
+            RoomManage.readRoomFromFile();
             return true;
         } return false;
     }
 
-    public boolean doCheckOut() {
+    public boolean doCheckOut() throws IOException {
         if (this.getStatus().equals(Room.OCCUPIED)) {
             this.setStatus(Room.ON_CHANGE);
             this.setLastCheckOut(java.time.LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+            RoomManage.writeRoomToFile();
+            RoomManage.readRoomFromFile();
             return true;
         } return false;
     }
 
-    public boolean cleanTheRoom() {
+    public boolean cleanTheRoom() throws IOException {
         if (this.getStatus().equals(Room.ON_CHANGE)) {
             this.setStatus(Room.READY);
+            RoomManage.writeRoomToFile();
+            RoomManage.readRoomFromFile();
             return true;
         } return false;
     }

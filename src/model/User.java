@@ -80,7 +80,7 @@ public class User {
         return String.format("%-20s %-10d %-20s %-25s", fullName, age, phoneNumber, email);
     }
 
-    public void doCheckInForCustomer(int roomId){
+    public void doCheckInForCustomer(int roomId) throws IOException {
         int roomIndex = RoomManage.getRoomInstance().findIndexById(roomId);
         if (RoomManage.getRoomInstance().getRoomList().get(roomIndex).doCheckIn()) {
             System.out.println("Đã hoàn tất thủ tục check-in. Thời gian: " + java.time.LocalDate.now());
@@ -102,13 +102,18 @@ public class User {
             String checkOutTime = RoomManage.getRoomInstance().getRoomList().get(roomIndex).getLastCheckOut();
             Receipt receipt = new Receipt(receiptId, customerName, staffName, checkInTime, checkOutTime, roomId);
             ReceiptManage.getReceiptInstance().add(receipt);
-            System.out.println("Đã phát hành hóa đơn.");
+            System.out.println("Đã phát hành hóa đơn. Thông tin hóa đơn:");
+            System.out.println();
+            System.out.printf("%-15s %-20s %-20s %-15s %-15s %-15s %n", "Số hóa đơn", "Khách hàng", "Nhân viên", "Ngày check-in", "Ngày check-out", "Tổng tiền");
+            System.out.println(receipt);
+            System.out.println("_____________________________________________________________________________________________________");
+            System.out.println();
         } else {
             System.err.println("Không thể hoàn tất thủ tục check-out. Phòng đang ở trạng thái: " + RoomManage.getRoomInstance().getRoomList().get(roomIndex).getStatus());
         }
     }
 
-    public void cleanTheRoom(int roomId) {
+    public void cleanTheRoom(int roomId) throws IOException {
         int roomIndex = RoomManage.getRoomInstance().findIndexById(roomId);
         if (RoomManage.getRoomInstance().getRoomList().get(roomIndex).cleanTheRoom()) {
             System.out.println("Đã dọn dẹp xong.");

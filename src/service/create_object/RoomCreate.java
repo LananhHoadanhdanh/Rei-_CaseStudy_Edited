@@ -7,13 +7,14 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class RoomCreate {
+    public static final Scanner SCANNER = new Scanner(System.in);
+
     public static int createOldRoomId() {
         System.out.print("Nhập số phòng: ");
         int roomId = -1;
         while (RoomManage.getRoomInstance().findIndexById(roomId) == -1 || roomId < 0) {
-            Scanner sc = new Scanner(System.in);
             try {
-                roomId = sc.nextInt();
+                roomId = SCANNER.nextInt();
                 if (RoomManage.getRoomInstance().findIndexById(roomId) == -1) {
                     System.err.println("Phòng không tồn tại. Vui lòng nhập lại.");
                 }
@@ -22,6 +23,8 @@ public class RoomCreate {
                 }
             } catch (InputMismatchException e){
                 System.err.println("Dữ liệu nhập vào không hợp lệ. Vui lòng nhập lại");
+            } finally {
+                SCANNER.nextLine();
             }
         }
         return roomId;
@@ -31,9 +34,8 @@ public class RoomCreate {
         System.out.print("Nhập số phòng: ");
         int roomId = -1;
         while (RoomManage.getRoomInstance().findIndexById(roomId) != -1 || roomId < 0) {
-            Scanner sc = new Scanner(System.in);
             try {
-                roomId = sc.nextInt();
+                roomId = SCANNER.nextInt();
                 if (RoomManage.getRoomInstance().findIndexById(roomId) != -1) {
                     System.err.println("Phòng đã tồn tại. Vui lòng nhập lại.");
                 }
@@ -42,6 +44,8 @@ public class RoomCreate {
                 }
             } catch (InputMismatchException e){
                 System.err.println("Dữ liệu nhập vào không hợp lệ. Vui lòng nhập lại");
+            } finally {
+                SCANNER.nextLine();
             }
         }
         return roomId;
@@ -50,14 +54,15 @@ public class RoomCreate {
     public static int createPrice() {
         int price = -1;
         while (price < 0){
-            Scanner sc = new Scanner(System.in);
             try {
-                price = sc.nextInt();
+                price = SCANNER.nextInt();
                 if (price < 0) {
                     System.err.println("Số tiền không hợp lệ. Vui lòng nhập lại.");
                 }
             } catch (InputMismatchException e){
                 System.err.println("Dữ liệu nhập vào không hợp lệ. Vui lòng nhập lại");
+            } finally {
+                SCANNER.nextLine();
             }
         }
         return price;
@@ -67,14 +72,15 @@ public class RoomCreate {
         System.out.print("Nhập số giường ngủ: ");
         int numberOfBed = -1;
         while (numberOfBed < 0){
-            Scanner sc = new Scanner(System.in);
             try {
-                numberOfBed = sc.nextInt();
+                numberOfBed = SCANNER.nextInt();
                 if (numberOfBed < 0) {
                     System.err.println("Số không hợp lệ. Vui lòng nhập lại.");
                 }
             } catch (InputMismatchException e){
                 System.err.println("Dữ liệu nhập vào không hợp lệ. Vui lòng nhập lại");
+            } finally {
+                SCANNER.nextLine();
             }
         }
         return numberOfBed;
@@ -84,14 +90,15 @@ public class RoomCreate {
         System.out.print("Nhập số nhà vệ sinh: ");
         int numberOfToilet = -1;
         while (numberOfToilet < 0){
-            Scanner sc = new Scanner(System.in);
             try {
-                numberOfToilet = sc.nextInt();
+                numberOfToilet = SCANNER.nextInt();
                 if (numberOfToilet < 0) {
                     System.err.println("Số không hợp lệ. Vui lòng nhập lại.");
                 }
             } catch (InputMismatchException e){
                 System.err.println("Dữ liệu nhập vào không hợp lệ. Vui lòng nhập lại");
+            } finally {
+                SCANNER.nextLine();
             }
         }
         return numberOfToilet;

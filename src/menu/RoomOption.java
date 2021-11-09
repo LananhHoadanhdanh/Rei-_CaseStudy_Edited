@@ -20,7 +20,7 @@ public class RoomOption {
         return roomOption;
     }
 
-    public void roomOptionCheckIn(String username) {
+    public void roomOptionCheckIn(String username) throws IOException {
         int roomId = RoomCreate.createOldRoomId();
         User user = UserManage.getUserInstance().getUserList().get(UserManage.getUserInstance().findIndexByUsername(username));
         user.doCheckInForCustomer(roomId);
@@ -32,7 +32,7 @@ public class RoomOption {
         user.doCheckOutForCustomer(roomId);
     }
 
-    public void roomOptionClean(String username) {
+    public void roomOptionClean(String username) throws IOException {
         int roomId = RoomCreate.createOldRoomId();
         User user = UserManage.getUserInstance().getUserList().get(UserManage.getUserInstance().findIndexByUsername(username));
         user.cleanTheRoom(roomId);
