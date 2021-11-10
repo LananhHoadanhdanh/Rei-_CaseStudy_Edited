@@ -3,7 +3,6 @@ package menu;
 import model.Room;
 import model.User;
 import service.create_object.RoomCreate;
-import service.manage.ReceiptManage;
 import service.manage.RoomManage;
 import service.manage.UserManage;
 

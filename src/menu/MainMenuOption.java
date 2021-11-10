@@ -1,6 +1,5 @@
 package menu;
 
-import model.User;
 import service.create_object.UserCreate;
 import service.file_IO.ReceiptFileIO;
 import service.file_IO.RoomFileIO;
@@ -10,7 +9,6 @@ import service.manage.UserManage;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.text.ParseException;
-import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
