@@ -32,13 +32,11 @@ public class ReceiptManage{
     public void add(Receipt receipt) throws IOException, ParseException {
         receiptList.add(receipt);
         ReceiptFileIO.writeReceiptToFile();
-        ReceiptFileIO.readReceiptFromFile();
     }
 
     public void delete(String id) throws IOException, ParseException {
         receiptList.remove(findIndexById(id));
         ReceiptFileIO.writeReceiptToFile();
-        ReceiptFileIO.readReceiptFromFile();
     }
 
     public void displayAllReceipt() {

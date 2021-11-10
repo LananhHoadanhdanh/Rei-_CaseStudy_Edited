@@ -30,13 +30,11 @@ public class UserManage {
     public void add(User user) throws IOException {
         usersList.add(user);
         UserFileIO.writeUserToFile();
-        UserFileIO.readUserFromFile();
     }
 
     public void deleteUser(String username) throws IOException {
         usersList.remove(findIndexByUsername(username));
         UserFileIO.writeUserToFile();
-        UserFileIO.readUserFromFile();
     }
 
     public int findIndexByUsername(String username){

@@ -19,13 +19,13 @@ public class ManageOption {
                     RoomManage.getRoomInstance().displayListRoom();
                     break;
                 case 2:
-                    roomOption.roomOptionCheckIn(username);
+                    roomOption.roomOptionCheckIn();
                     break;
                 case 3:
                     roomOption.roomOptionCheckOut(username);
                     break;
                 case 4:
-                    roomOption.roomOptionClean(username);
+                    roomOption.roomOptionClean();
                     break;
                 case 5:
                     roomOption.roomOptionAdd();

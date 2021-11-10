@@ -3,6 +3,7 @@ package service.create_object;
 import model.Room;
 import service.manage.RoomManage;
 
+import java.time.format.DateTimeFormatter;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -110,6 +111,8 @@ public class RoomCreate {
         int price = createPrice();
         int numberOfBed = createNumberOfBed();
         int numberOfToilet = createNumberOfToilet();
-        return new Room(roomId, price, Room.READY, numberOfBed, numberOfToilet);
+        String lastCheckIn = java.time.LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+        String lastCheckOut = java.time.LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+        return new Room(roomId, price, Room.READY, numberOfBed, numberOfToilet, lastCheckIn, lastCheckOut);
     }
 }

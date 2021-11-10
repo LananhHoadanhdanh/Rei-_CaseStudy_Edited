@@ -1,16 +1,13 @@
 package menu;
 
 import model.Room;
-import model.User;
 import service.create_object.RoomCreate;
 import service.manage.RoomManage;
-import service.manage.UserManage;
 
 import java.io.IOException;
 import java.text.ParseException;
 
 public class RoomOption {
-    UserManage userInstance = UserManage.getUserInstance();
     RoomManage roomInstance = RoomManage.getRoomInstance();
 
     private static RoomOption roomOption;
@@ -23,22 +20,19 @@ public class RoomOption {
         return roomOption;
     }
 
-    public void roomOptionCheckIn(String username) throws IOException {
+    public void roomOptionCheckIn() throws IOException {
         int roomId = RoomCreate.createOldRoomId();
-        User user = userInstance.getUserList().get(userInstance.findIndexByUsername(username));
-        user.doCheckInForCustomer(roomId);
+        roomInstance.doCheckIn(roomId);
     }
 
     public void roomOptionCheckOut(String username) throws IOException, ParseException {
         int roomId = RoomCreate.createOldRoomId();
-        User user = userInstance.getUserList().get(userInstance.findIndexByUsername(username));
-        user.doCheckOutForCustomer(roomId);
+        roomInstance.doCheckOut(username,roomId);
     }
 
-    public void roomOptionClean(String username) throws IOException {
+    public void roomOptionClean() throws IOException {
         int roomId = RoomCreate.createOldRoomId();
-        User user = userInstance.getUserList().get(userInstance.findIndexByUsername(username));
-        user.cleanTheRoom(roomId);
+        roomInstance.cleanTheRoom(roomId);
     }
 
     public void roomOptionAdd() throws IOException, ParseException {

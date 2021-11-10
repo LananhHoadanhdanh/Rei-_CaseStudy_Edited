@@ -21,14 +21,6 @@ public class Room implements Comparable<Room>{
     public Room() {
     }
 
-    public Room(int roomID, int price, String status, int numberOfBed, int numberOfToilet) {
-        this.roomID = roomID;
-        this.price = price;
-        this.status = status;
-        this.numberOfBed = numberOfBed;
-        this.numberOfToilet = numberOfToilet;
-    }
-
     public Room(int roomID, int price, String status, int numberOfBed, int numberOfToilet, String lastCheckIn, String lastCheckOut) {
         this.roomID = roomID;
         this.price = price;
@@ -98,25 +90,6 @@ public class Room implements Comparable<Room>{
     @Override
     public String toString() {
         return String.format("%-10d %-10d %-20s %-15d %-15d", roomID, price, status, numberOfBed, numberOfToilet);
-    }
-
-    public boolean doCheckIn() throws IOException {
-        if (this.getStatus().equals(Room.READY)) {
-            this.setStatus(Room.OCCUPIED);
-            this.setLastCheckIn(java.time.LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
-            RoomFileIO.writeRoomToFile();
-            RoomFileIO.readRoomFromFile();
-            return true;
-        } return false;
-    }
-
-    public boolean cleanTheRoom() throws IOException {
-        if (this.getStatus().equals(Room.ON_CHANGE)) {
-            this.setStatus(Room.READY);
-            RoomFileIO.writeRoomToFile();
-            RoomFileIO.readRoomFromFile();
-            return true;
-        } return false;
     }
 
     @Override
