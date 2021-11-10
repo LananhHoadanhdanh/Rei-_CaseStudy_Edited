@@ -1,6 +1,5 @@
 package menu;
 
-import model.Account;
 import service.manage.ReceiptManage;
 import service.manage.RoomManage;
 
@@ -13,7 +12,7 @@ public class ManageOption {
         int choice = -1;
         while (choice != 0) {
             ShowMenu.showRoomMenu();
-            choice = Account.choiceExceptionHandling();
+            choice = MainMenuOption.createChoiceMenu();
             RoomOption roomOption = RoomOption.getRoomOption();
             switch (choice) {
                 case 1:
@@ -57,7 +56,7 @@ public class ManageOption {
         int choice = -1;
         while (choice != 0) {
             ShowMenu.showReceiptMenu();
-            choice = Account.choiceExceptionHandling();
+            choice = MainMenuOption.createChoiceMenu();
             switch (choice) {
                 case 1:
                     ReceiptManage.getReceiptInstance().displayAllReceipt();

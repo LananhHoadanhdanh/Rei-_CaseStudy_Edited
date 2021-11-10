@@ -1,6 +1,7 @@
 package service.manage;
 
 import model.User;
+import service.file_IO.UserFileIO;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -22,16 +23,20 @@ public class UserManage {
         return usersList;
     }
 
+    public void setUsersList(ArrayList<User> usersList) {
+        UserManage.usersList = usersList;
+    }
+
     public void add(User user) throws IOException {
         usersList.add(user);
-        writeUserToFile();
-        readUserFromFile();
+        UserFileIO.writeUserToFile();
+        UserFileIO.readUserFromFile();
     }
 
     public void deleteUser(String username) throws IOException {
         usersList.remove(findIndexByUsername(username));
-        writeUserToFile();
-        readUserFromFile();
+        UserFileIO.writeUserToFile();
+        UserFileIO.readUserFromFile();
     }
 
     public int findIndexByUsername(String username){
@@ -54,40 +59,5 @@ public class UserManage {
         } else {
             System.err.println("Sai tên đăng nhập.");
         }
-    }
-
-    public static void writeUserToFile() throws IOException {
-        FileWriter fileWriter = new FileWriter("src/service/userManageFile.csv");
-        BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
-        StringBuilder str = new StringBuilder("Họ và tên,Tuổi,Số điện thoại,Email,Tên đăng nhập,Password");
-        for (User user : usersList) {
-            str.append("\n").append(user.getFullName()).append(",");
-            str.append(user.getAge()).append(",");
-            str.append(user.getPhoneNumber()).append(",");
-            str.append(user.getEmail()).append(",");
-            str.append(user.getUsername()).append(",");
-            str.append(user.getPassword());
-        }
-        bufferedWriter.write(str.toString());
-        bufferedWriter.close();
-    }
-
-    public static void readUserFromFile() throws IOException {
-        usersList = new ArrayList<>();
-        FileReader fileReader = new FileReader("src/service/userManageFile.csv");
-        BufferedReader bufferedReader = new BufferedReader(fileReader);
-        String content = bufferedReader.readLine();
-        while ((content = bufferedReader.readLine()) != null) {
-            String[] array = content.split(",");
-            String fullName = array[0];
-            int age = Integer.parseInt(array[1]);
-            String phoneNumber = array[2];
-            String email = array[3];
-            String username = array[4];
-            String password = array[5];
-            usersList.add(new User(fullName, age, phoneNumber, email, username, password));
-        }
-        bufferedReader.close();
-        fileReader.close();
     }
 }

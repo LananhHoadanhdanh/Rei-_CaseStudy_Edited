@@ -1,6 +1,7 @@
 package service.manage;
 
 import model.Room;
+import service.file_IO.RoomFileIO;
 
 import java.io.*;
 import java.text.ParseException;
@@ -24,16 +25,20 @@ public class RoomManage {
         return roomList;
     }
 
+    public void setRoomList(ArrayList<Room> roomList) {
+        RoomManage.roomList = roomList;
+    }
+
     public void add(Room room) throws IOException, ParseException {
         roomList.add(room);
-        writeRoomToFile();
-        readRoomFromFile();
+        RoomFileIO.writeRoomToFile();
+        RoomFileIO.readRoomFromFile();
     }
 
     public void delete(int id) throws IOException {
         roomList.remove(findIndexById(id));
-        writeRoomToFile();
-        readRoomFromFile();
+        RoomFileIO.writeRoomToFile();
+        RoomFileIO.readRoomFromFile();
     }
 
     public int findIndexById(int id) {
@@ -96,37 +101,4 @@ public class RoomManage {
         System.out.println();
     }
 
-    public static void writeRoomToFile() throws IOException{
-        Collections.sort(roomList);
-        FileWriter fileWriter = new FileWriter("src/service/roomManageFile.csv");
-        BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
-        StringBuilder str = new StringBuilder("Số phòng,Giá thuê phòng,Trạng thái hiện tại,Số giường ngủ, Số nhà vệ sinh");
-        for (Room room : roomList) {
-            str.append("\n").append(room.getRoomID()).append(",");
-            str.append(room.getPrice()).append(",");
-            str.append(room.getStatus()).append(",");
-            str.append(room.getNumberOfBed()).append(",");
-            str.append(room.getNumberOfToilet());
-        }
-        bufferedWriter.write(str.toString());
-        bufferedWriter.close();
-    }
-
-    public static void readRoomFromFile() throws IOException {
-        roomList = new ArrayList<>();
-        FileReader fileReader = new FileReader("src/service/roomManageFile.csv");
-        BufferedReader bufferedReader = new BufferedReader(fileReader);
-        String content = bufferedReader.readLine();
-        while ((content = bufferedReader.readLine()) != null) {
-            String[] array = content.split(",");
-            int roomID = Integer.parseInt(array[0]);
-            int price = Integer.parseInt(array[1]);
-            String status = array[2];
-            int numberOfBed = Integer.parseInt(array[3]);
-            int numberOfToilet = Integer.parseInt(array[4]);
-            roomList.add(new Room(roomID, price, status, numberOfBed, numberOfToilet));
-        }
-        bufferedReader.close();
-        fileReader.close();
-    }
 }

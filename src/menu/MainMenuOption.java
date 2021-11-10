@@ -1,27 +1,50 @@
 package menu;
 
-import model.Account;
 import service.create_object.UserCreate;
+import service.file_IO.ReceiptFileIO;
+import service.file_IO.RoomFileIO;
+import service.file_IO.UserFileIO;
 import service.manage.ReceiptManage;
 import service.manage.RoomManage;
 import service.manage.UserManage;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.text.ParseException;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class MainMenuOption {
+
+    public static int createChoiceMenu() {
+        Scanner scanner = new Scanner(System.in);
+        int choice = -1;
+        try {
+            choice = scanner.nextInt();
+        } catch (InputMismatchException exception) {
+            System.err.println("Nhập số nguyên!");
+        } finally {
+            scanner.nextLine();
+        }
+        return choice;
+    }
+
+    public static boolean login(String username, String password) {
+        int index = UserManage.getUserInstance().findIndexByUsername(username);
+        return UserManage.getUserInstance().getUserList().get(index).getPassword().equals(password);
+    }
+
     public static void loginToSystem() throws IOException, ParseException {
         Scanner scanner = new Scanner(System.in);
         String username = UserCreate.createLoginUserName();
         System.out.print("Nhập mật khẩu: ");
         String password = scanner.nextLine();
-        if (Account.login(username, password)) {
+        if (login(username, password)) {
             System.out.println("Đăng nhập thành công!");
             int choice = -1;
             while (choice != 0) {
                 ShowMenu.showManageMenu();
-                choice = Account.choiceExceptionHandling();
+                choice = MainMenuOption.createChoiceMenu();
                 switch (choice) {
                     case 1:
                         UserManage.getUserInstance().getUserInformation(username);
@@ -40,40 +63,34 @@ public class MainMenuOption {
     }
 
     public static void main(String[] args) throws IOException, ParseException {
-        RoomManage.getRoomInstance();
-        RoomManage.readRoomFromFile();
-        RoomManage.writeRoomToFile();
+        UserManage userInstance = UserManage.getUserInstance();
+        RoomManage roomInstance = RoomManage.getRoomInstance();
+        ReceiptManage receiptInstance = ReceiptManage.getReceiptInstance();
 
-
-        UserManage.getUserInstance();
-        UserManage.readUserFromFile();
-        UserManage.writeUserToFile();
-
-
-        ReceiptManage.getReceiptInstance();
-        ReceiptManage.readReceiptFromFile();
-        ReceiptManage.writeReceiptToFile();
+        UserFileIO.readUserFromFile();
+        RoomFileIO.readRoomFromFile();
+        ReceiptFileIO.readReceiptFromFile();
         int choice;
         while (true) {
             Scanner scanner = new Scanner(System.in);
             ShowMenu.showLoginMenu();
-            choice = Account.choiceExceptionHandling();
+            choice = createChoiceMenu();
             switch (choice) {
                 case 1:
                     loginToSystem();
                     break;
                 case 2:
-                    Account.register();
+                    userInstance.add(UserCreate.createUser());
                     System.out.println("Đăng kí thành công!");
                     break;
                 case 3:
                     String username = UserCreate.createLoginUserName();
                     System.out.print("Nhập mật khẩu: ");
                     String password = scanner.nextLine();
-                    if (Account.login(username, password)) {
-                        UserManage.getUserInstance().deleteUser(username);
+                    if (login(username, password)) {
+                        userInstance.deleteUser(username);
                         System.out.println("Nhập thông tin mới.");
-                        UserManage.getUserInstance().add(UserCreate.createUser());
+                        userInstance.add(UserCreate.createUser());
                         System.out.println("Đã cập nhật thông tin thành công.");
                     } else {
                         System.err.println("Mật khẩu sai!");
@@ -83,8 +100,8 @@ public class MainMenuOption {
                     String usernameDelete = UserCreate.createLoginUserName();
                     System.out.print("Nhập mật khẩu: ");
                     String passwordDelete = scanner.nextLine();
-                    if (Account.login(usernameDelete, passwordDelete)) {
-                        UserManage.getUserInstance().getUserList().remove(UserManage.getUserInstance().findIndexByUsername(usernameDelete));
+                    if (login(usernameDelete, passwordDelete)) {
+                        userInstance.getUserList().remove(userInstance.findIndexByUsername(usernameDelete));
                         System.out.println("Xóa tài khoản thành công!");
                     } else {
                         System.err.println("Mật khẩu sai!");
