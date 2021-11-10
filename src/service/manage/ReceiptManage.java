@@ -12,6 +12,7 @@ public class ReceiptManage{
     private static ArrayList<Receipt> receiptList;
 
     private ReceiptManage() {
+        receiptList = new ArrayList<>();
     }
 
     private static ReceiptManage receiptInstance;

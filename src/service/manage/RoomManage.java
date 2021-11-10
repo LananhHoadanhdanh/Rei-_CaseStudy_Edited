@@ -17,6 +17,7 @@ public class RoomManage {
     private static ArrayList<Room> roomList;
 
     RoomManage() {
+        roomList = new ArrayList<>();
     }
 
     private static RoomManage roomInstance;

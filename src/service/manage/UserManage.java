@@ -10,6 +10,7 @@ public class UserManage {
     private static ArrayList<User> usersList;
 
     private UserManage() {
+        usersList = new ArrayList<>();
         }
 
     private static UserManage userInstance;
