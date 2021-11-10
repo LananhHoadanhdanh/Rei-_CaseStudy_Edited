@@ -5,21 +5,21 @@ public class ShowMenu {
     public static void showLoginMenu() {
         System.out.println("🌸☆🌸☆🌸☆🌸☆🌸☆🌸☆🌸☆🌸☆🌸☆🌸☆🌸☆🌸☆🌸☆🌸☆🌸☆🌸🌸");
         System.out.println("🌸      ***  CHỌN ĐỂ ĐĂNG NHẬP NGAY  ***       🌸");
-        System.out.println("🌸           1. Đăng nhập                      🌸");
-        System.out.println("🌸           2. Đăng kí tài khoản              🌸");
-        System.out.println("🌸           3. Sửa thông tin tài khoản        🌸");
-        System.out.println("🌸           4. Xóa tài khoản                  🌸");
-        System.out.println("🌸           0. Thoát khỏi hệ thống            🌸");
+        System.out.println("🌸         1. Đăng nhập                        🌸");
+        System.out.println("🌸         2. Đăng kí tài khoản                🌸");
+        System.out.println("🌸         3. Sửa thông tin tài khoản          🌸");
+        System.out.println("🌸         4. Xóa tài khoản                    🌸");
+        System.out.println("🌸         0. Thoát khỏi hệ thống              🌸");
         System.out.println("🌸☆🌸☆🌸☆🌸☆🌸☆🌸☆🌸☆🌸☆🌸☆🌸☆🌸☆🌸☆🌸☆🌸☆🌸☆🌸🌸");
     }
 
     public static void showManageMenu() {
         System.out.println("🌸☆🌸☆🌸☆🌸☆🌸☆🌸☆🌸☆🌸☆🌸☆🌸☆🌸☆🌸☆🌸☆🌸☆🌸☆🌸🌸");
         System.out.println("🌸         ***  CHỌN MENU QUẢN LÝ  ***         🌸");
-        System.out.println("🌸      1. Hiển thị thông tin tài khoản        🌸");
-        System.out.println("🌸      2. Quản lý phòng                       🌸");
-        System.out.println("🌸      3. Quản lý hóa đơn                     🌸");
-        System.out.println("🌸      0. Thoát khỏi menu quản lý             🌸");
+        System.out.println("🌸       1. Hiển thị thông tin tài khoản       🌸");
+        System.out.println("🌸       2. Quản lý phòng                      🌸");
+        System.out.println("🌸       3. Quản lý hóa đơn                    🌸");
+        System.out.println("🌸       0. Thoát khỏi menu quản lý            🌸");
         System.out.println("🌸☆🌸☆🌸☆🌸☆🌸☆🌸☆🌸☆🌸☆🌸☆🌸☆🌸☆🌸☆🌸☆🌸☆🌸☆🌸🌸");
     }
 

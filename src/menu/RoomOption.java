@@ -10,9 +10,10 @@ import java.io.IOException;
 import java.text.ParseException;
 
 public class RoomOption {
-    private static RoomOption roomOption;
     UserManage userInstance = UserManage.getUserInstance();
     RoomManage roomInstance = RoomManage.getRoomInstance();
+
+    private static RoomOption roomOption;
 
     private RoomOption() {
     }
@@ -50,6 +51,7 @@ public class RoomOption {
         System.out.println("Nhập thông tin mới: ");
         roomInstance.add(RoomCreate.createRoom());
         System.out.println("🌸☆🌸　Cập nhật phòng thành công　🌸☆🌸");
+        System.out.println();
     }
 
     public void roomOptionInformationById() {
