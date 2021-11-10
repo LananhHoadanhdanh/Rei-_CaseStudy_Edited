@@ -1,13 +1,16 @@
 package menu;
 
+import model.User;
 import service.create_object.UserCreate;
 import service.file_IO.ReceiptFileIO;
 import service.file_IO.RoomFileIO;
 import service.file_IO.UserFileIO;
 import service.manage.UserManage;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -38,6 +41,7 @@ public class MainMenuOption {
         String password = scanner.nextLine();
         if (login(username, password)) {
             System.out.println("🌸☆🌸　Đăng nhập thành công　🌸☆🌸");
+            System.out.println();
             int choice = -1;
             while (choice != 0) {
                 ShowMenu.showManageMenu();
@@ -61,9 +65,21 @@ public class MainMenuOption {
 
     public static void main(String[] args) throws IOException, ParseException {
         UserManage userInstance = UserManage.getUserInstance();
-        UserFileIO.readUserFromFile();
-        RoomFileIO.readRoomFromFile();
-        ReceiptFileIO.readReceiptFromFile();
+        try {
+            UserFileIO.readUserFromFile();
+        } catch (FileNotFoundException ignored) {
+            System.err.println("Hệ thống chưa có dữ liệu tài khoản. Chọn 2 để đăng kí tài khoản mới");
+        }
+        try {
+            RoomFileIO.readRoomFromFile();
+        } catch (FileNotFoundException ignored) { }
+
+        try {
+            ReceiptFileIO.readReceiptFromFile();
+        } catch (FileNotFoundException ignored) {
+
+        }
+
         int choice;
         while (true) {
             Scanner scanner = new Scanner(System.in);
@@ -76,6 +92,7 @@ public class MainMenuOption {
                 case 2:
                     userInstance.add(UserCreate.createUser());
                     System.out.println("🌸☆🌸　Đăng kí thành công　🌸☆🌸");
+                    System.out.println();
                     break;
                 case 3:
                     String username = UserCreate.createLoginUserName();
@@ -86,6 +103,7 @@ public class MainMenuOption {
                         System.out.println("Nhập thông tin mới.");
                         userInstance.add(UserCreate.createUser());
                         System.out.println("🌸☆🌸　Cập nhật thông tin thành công　🌸☆🌸");
+                        System.out.println();
                     } else {
                         System.err.println("Mật khẩu sai!");
                     }
@@ -97,6 +115,7 @@ public class MainMenuOption {
                     if (login(usernameDelete, passwordDelete)) {
                         userInstance.getUserList().remove(userInstance.findIndexByUsername(usernameDelete));
                         System.out.println("🌸☆🌸　Xóa tài khoản thành công　🌸☆🌸");
+                        System.out.println();
                     } else {
                         System.err.println("Mật khẩu sai!");
                     }

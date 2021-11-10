@@ -31,6 +31,7 @@ public class ReceiptOption {
         String receiptId = ReceiptCreate.createOldReceiptId();
         receiptInstance.delete(receiptId);
         System.out.println("🌸☆🌸　Xóa hóa đơn thành công　🌸☆🌸");
+        System.out.println();
     }
 
     public void receiptOptionFindByDay() throws ParseException, IOException {

@@ -70,6 +70,7 @@ public class RoomOption {
         }
         roomInstance.delete(roomId);
         System.out.println("🌸☆🌸　Xóa phòng thành công　🌸☆🌸");
+        System.out.println();
     }
 
     public void roomOptionInformationByPrice() {

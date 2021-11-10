@@ -88,6 +88,7 @@ public class User {
         Room room = roomInstance.getRoomList().get(roomInstance.findIndexById(roomId));
         if (room.doCheckIn()) {
             System.out.println("Đã hoàn tất thủ tục check-in. Thời gian: " + java.time.LocalDate.now());
+            System.out.println();
         } else {
             System.err.println("Không thể hoàn tất thủ tục check-in. Phòng đang ở trạng thái: " + room.getStatus());
         }
@@ -107,6 +108,7 @@ public class User {
             Receipt receipt = new Receipt(receiptId, customerName, staffName, checkInTime, checkOutTime, roomId);
             ReceiptManage.getReceiptInstance().add(receipt);
 
+            System.out.println("Đã hoàn tất thủ tục check-out. Thời gian: " + java.time.LocalDate.now());
             room.setStatus(Room.ON_CHANGE);
             room.setLastCheckOut(checkOutTime);
             RoomFileIO.writeRoomToFile();
@@ -129,6 +131,7 @@ public class User {
         Room room = roomInstance.getRoomList().get(roomInstance.findIndexById(roomId));
         if (room.cleanTheRoom()) {
             System.out.println("🌸☆🌸　Đã dọn dẹp phòng xong　🌸☆🌸");
+            System.out.println();
         } else {
             System.err.println("Không thể dọn dẹp. Phòng đang ở trạng thái: " + room.getStatus());
         }
