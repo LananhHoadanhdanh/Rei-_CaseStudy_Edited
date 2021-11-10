@@ -9,11 +9,11 @@ import java.text.ParseException;
 public class ManageOption {
 
     public static void roomManageOption(String username) throws IOException, ParseException {
+        RoomOption roomOption = RoomOption.getRoomOption();
         int choice = -1;
         while (choice != 0) {
             ShowMenu.showRoomMenu();
             choice = MainMenuOption.createChoiceMenu();
-            RoomOption roomOption = RoomOption.getRoomOption();
             switch (choice) {
                 case 1:
                     RoomManage.getRoomInstance().displayListRoom();

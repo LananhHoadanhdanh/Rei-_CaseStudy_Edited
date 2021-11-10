@@ -82,14 +82,23 @@ public class UserCreate {
         return email;
     }
 
+    public static String createFullName() {
+        String fullName = SCANNER.nextLine();
+        while (!Validation.validateString(fullName, Validation.FULL_NAME)) {
+            System.err.println("Họ và tên chưa hợp lệ. Vui lòng nhập lại.");
+            fullName = SCANNER.nextLine();
+        }
+        return fullName;
+    }
+
     public static User createUser() {
         String username = createRegisterUserName();
         String password = createRegisterPassword();
         System.out.print("Nhập họ và tên: ");
-        String name = SCANNER.nextLine();
+        String fullName = createFullName();
         String phoneNumber = createPhoneNumber();
         String email = createEmail();
         int age = createAge();
-        return new User(name, age, phoneNumber, email, username, password);
+        return new User(fullName, age, phoneNumber, email, username, password);
     }
 }

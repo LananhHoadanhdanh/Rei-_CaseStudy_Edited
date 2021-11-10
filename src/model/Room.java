@@ -112,10 +112,6 @@ public class Room implements Comparable<Room>{
 
     public boolean doCheckOut() throws IOException {
         if (this.getStatus().equals(Room.OCCUPIED)) {
-            this.setStatus(Room.ON_CHANGE);
-            this.setLastCheckOut(java.time.LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
-            RoomFileIO.writeRoomToFile();
-            RoomFileIO.readRoomFromFile();
             return true;
         } return false;
     }

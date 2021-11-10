@@ -43,9 +43,9 @@ public class ReceiptCreate {
     public static Receipt createReceipt() throws ParseException {
         String receiptId = createNewReceiptId();
         System.out.print("Nhập tên khách hàng: ");
-        String customerName = SCANNER.nextLine();
+        String customerName = UserCreate.createFullName();
         System.out.print("Nhập tên nhân viên: ");
-        String staffName = SCANNER.nextLine();
+        String staffName = UserCreate.createFullName();
         System.out.println("Nhập ngày check-in (định dạng dd/MM/yyyy): ");
         String checkInTime = createNewDate();
         System.out.println("Nhập ngày check-out (định dạng dd/MM/yyyy): ");

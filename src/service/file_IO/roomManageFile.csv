@@ -1,5 +1,5 @@
-Số phòng,Giá thuê phòng,Trạng thái hiện tại,Số giường ngủ, Số nhà vệ sinh
-101,10000,Đang có khách thuê,1,1
-102,15000,Sẵn sàng,1,2
-103,20000,Sẵn sàng,2,2
-104,25000,Sẵn sàng,2,2
+Số phòng,Giá thuê phòng,Trạng thái hiện tại,Số giường ngủ, Số nhà vệ sinh,Giờ check-in cuối,Giờ check-out cuối
+101,10000,Sẵn sàng,1,1,09/11/2021,09/11/2021
+102,15000,Đang dọn dẹp,1,2,08/11/2021,10/11/2021
+103,20000,Sẵn sàng,2,2,7/11/2021,10/11/2021
+104,25000,Sẵn sàng,2,2,05/11/2021,05/11/2021

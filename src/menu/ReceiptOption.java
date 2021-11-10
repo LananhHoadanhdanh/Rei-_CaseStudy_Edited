@@ -9,6 +9,8 @@ import java.text.ParseException;
 
 public class ReceiptOption {
 
+    ReceiptManage receiptInstance = ReceiptManage.getReceiptInstance();
+
     private static ReceiptOption receiptOption;
 
     private ReceiptOption() {
@@ -21,13 +23,13 @@ public class ReceiptOption {
 
     public void receiptOptionUpdateById() throws ParseException, IOException {
         String receiptId = ReceiptCreate.createOldReceiptId();
-        ReceiptManage.getReceiptInstance().delete(receiptId);
-        ReceiptManage.getReceiptInstance().add(ReceiptCreate.createReceipt());
+        receiptInstance.delete(receiptId);
+        receiptInstance.add(ReceiptCreate.createReceipt());
     }
 
     public void receiptOptionDeleteById() throws IOException, ParseException {
         String receiptId = ReceiptCreate.createOldReceiptId();
-        ReceiptManage.getReceiptInstance().delete(receiptId);
+        receiptInstance.delete(receiptId);
         System.out.println("Đã xóa thành công!");
     }
 
@@ -43,6 +45,6 @@ public class ReceiptOption {
             }
             endTime = ReceiptCreate.createNewDate();
         }
-        ReceiptManage.getReceiptInstance().displayReceiptListByDay(startTime, endTime);
+        receiptInstance.displayReceiptListByDay(startTime, endTime);
     }
 }

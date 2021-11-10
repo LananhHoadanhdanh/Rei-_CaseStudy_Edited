@@ -64,12 +64,15 @@ public class MainMenuOption {
 
     public static void main(String[] args) throws IOException, ParseException {
         UserManage userInstance = UserManage.getUserInstance();
-        RoomManage roomInstance = RoomManage.getRoomInstance();
-        ReceiptManage receiptInstance = ReceiptManage.getReceiptInstance();
 
         UserFileIO.readUserFromFile();
+        UserFileIO.writeUserToFile();
+
         RoomFileIO.readRoomFromFile();
+        RoomFileIO.writeRoomToFile();
+
         ReceiptFileIO.readReceiptFromFile();
+        ReceiptFileIO.writeReceiptToFile();
         int choice;
         while (true) {
             Scanner scanner = new Scanner(System.in);
