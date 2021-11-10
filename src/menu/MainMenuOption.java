@@ -4,11 +4,8 @@ import service.create_object.UserCreate;
 import service.file_IO.ReceiptFileIO;
 import service.file_IO.RoomFileIO;
 import service.file_IO.UserFileIO;
-import service.manage.ReceiptManage;
-import service.manage.RoomManage;
 import service.manage.UserManage;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.InputMismatchException;
@@ -64,15 +61,9 @@ public class MainMenuOption {
 
     public static void main(String[] args) throws IOException, ParseException {
         UserManage userInstance = UserManage.getUserInstance();
-
         UserFileIO.readUserFromFile();
-        UserFileIO.writeUserToFile();
-
         RoomFileIO.readRoomFromFile();
-        RoomFileIO.writeRoomToFile();
-
         ReceiptFileIO.readReceiptFromFile();
-        ReceiptFileIO.writeReceiptToFile();
         int choice;
         while (true) {
             Scanner scanner = new Scanner(System.in);

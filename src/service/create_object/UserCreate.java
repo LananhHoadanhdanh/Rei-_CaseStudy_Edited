@@ -84,9 +84,11 @@ public class UserCreate {
 
     public static String createFullName() {
         String fullName = SCANNER.nextLine();
-        while (!Validation.validateString(fullName, Validation.FULL_NAME)) {
+        int indexOfChar = fullName.indexOf(',');
+        while (!Validation.validateString(fullName, Validation.FULL_NAME) || indexOfChar != -1) {
             System.err.println("Họ và tên chưa hợp lệ. Vui lòng nhập lại.");
             fullName = SCANNER.nextLine();
+            indexOfChar = fullName.indexOf(',');
         }
         return fullName;
     }
