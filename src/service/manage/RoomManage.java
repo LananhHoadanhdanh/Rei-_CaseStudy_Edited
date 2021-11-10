@@ -52,7 +52,7 @@ public class RoomManage {
     public void displayListRoom() {
         Collections.sort(roomList);
         System.out.println();
-        System.out.println("________________________***  DANH SÁCH PHÒNG  ***________________________");
+        System.out.println("____________________***  DANH SÁCH TOÀN BỘ PHÒNG  ***_____________________");
         System.out.printf("%-10s %-10s %-20s %-15s %-15s %n", "Số phòng", "Giá phòng", "Trạng thái phòng", "Số giường ngủ", "Số nhà VS");
         System.out.println();
         for (Room room : roomList) {
@@ -78,7 +78,7 @@ public class RoomManage {
 
     public void displayReadyRoom() {
         System.out.println();
-        System.out.println("______________________***  DANH SÁCH PHÒNG TRỐNG ***______________________");
+        System.out.println("________________________***  DANH SÁCH PHÒNG TRỐNG ***________________________");
         System.out.printf("%-10s %-10s %-20s %-15s %-15s %n", "Số phòng", "Giá phòng", "Trạng thái phòng", "Số giường ngủ", "Số nhà VS");
         System.out.println();
         for (Room room : roomList) {
@@ -86,7 +86,7 @@ public class RoomManage {
                 System.out.println(room);
             }
         }
-        System.out.println("_____________________________________________________________________");
+        System.out.println("______________________________________________________________________________");
         System.out.println();
     }
 

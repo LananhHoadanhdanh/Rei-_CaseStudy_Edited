@@ -113,11 +113,11 @@ public class User {
             RoomFileIO.readRoomFromFile();
 
             System.out.println("Đã hoàn tất thủ tục check-out. Thời gian: " + java.time.LocalDate.now());
-            System.out.println("_______________*** Thông tin hóa đơn *** _______________");
+            System.out.println("_____________________________________*** Thông tin hóa đơn *** _____________________________________");
             System.out.println();
             System.out.printf("%-15s %-20s %-20s %-15s %-15s %-15s %n", "Số hóa đơn", "Khách hàng", "Nhân viên", "Ngày check-in", "Ngày check-out", "Tổng tiền");
             System.out.println(receipt);
-            System.out.println("_____________________________________________________________________________________________________");
+            System.out.println("____________________________________________________________________________________________________");
             System.out.println();
         } else {
             System.err.println("Không thể hoàn tất thủ tục check-out. Phòng đang ở trạng thái: " + room.getStatus());
@@ -128,7 +128,7 @@ public class User {
         RoomManage roomInstance = RoomManage.getRoomInstance();
         Room room = roomInstance.getRoomList().get(roomInstance.findIndexById(roomId));
         if (room.cleanTheRoom()) {
-            System.out.println("Đã dọn dẹp xong.");
+            System.out.println("🌸☆🌸　Đã dọn dẹp phòng xong　🌸☆🌸");
         } else {
             System.err.println("Không thể dọn dẹp. Phòng đang ở trạng thái: " + room.getStatus());
         }

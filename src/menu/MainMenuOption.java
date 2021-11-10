@@ -40,7 +40,7 @@ public class MainMenuOption {
         System.out.print("Nhập mật khẩu: ");
         String password = scanner.nextLine();
         if (login(username, password)) {
-            System.out.println("Đăng nhập thành công!");
+            System.out.println("🌸☆🌸　Đăng nhập thành công　🌸☆🌸");
             int choice = -1;
             while (choice != 0) {
                 ShowMenu.showManageMenu();
@@ -84,7 +84,7 @@ public class MainMenuOption {
                     break;
                 case 2:
                     userInstance.add(UserCreate.createUser());
-                    System.out.println("Đăng kí thành công!");
+                    System.out.println("🌸☆🌸　Đăng kí thành công　🌸☆🌸");
                     break;
                 case 3:
                     String username = UserCreate.createLoginUserName();
@@ -94,7 +94,7 @@ public class MainMenuOption {
                         userInstance.deleteUser(username);
                         System.out.println("Nhập thông tin mới.");
                         userInstance.add(UserCreate.createUser());
-                        System.out.println("Đã cập nhật thông tin thành công.");
+                        System.out.println("🌸☆🌸　Cập nhật thông tin thành công　🌸☆🌸");
                     } else {
                         System.err.println("Mật khẩu sai!");
                     }
@@ -105,7 +105,7 @@ public class MainMenuOption {
                     String passwordDelete = scanner.nextLine();
                     if (login(usernameDelete, passwordDelete)) {
                         userInstance.getUserList().remove(userInstance.findIndexByUsername(usernameDelete));
-                        System.out.println("Xóa tài khoản thành công!");
+                        System.out.println("🌸☆🌸　Xóa tài khoản thành công　🌸☆🌸");
                     } else {
                         System.err.println("Mật khẩu sai!");
                     }

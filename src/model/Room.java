@@ -110,12 +110,6 @@ public class Room implements Comparable<Room>{
         } return false;
     }
 
-    public boolean doCheckOut() throws IOException {
-        if (this.getStatus().equals(Room.OCCUPIED)) {
-            return true;
-        } return false;
-    }
-
     public boolean cleanTheRoom() throws IOException {
         if (this.getStatus().equals(Room.ON_CHANGE)) {
             this.setStatus(Room.READY);

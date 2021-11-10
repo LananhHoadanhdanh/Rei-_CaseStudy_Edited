@@ -5,12 +5,6 @@ import java.io.IOException;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        RoomManage roomInstance = RoomManage.getRoomInstance();
-        RoomFileIO.readRoomFromFile();
-        RoomFileIO.writeRoomToFile();
-        for (int i = 0; i < roomInstance.getRoomList().size(); i++) {
-            System.out.println(roomInstance.getRoomList().get(i).getLastCheckIn());
-        }
-
+        System.out.println("🌸☆🌸　Cập nhật thành công　🌸☆🌸");
     }
 }

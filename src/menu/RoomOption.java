@@ -50,7 +50,7 @@ public class RoomOption {
         roomInstance.delete(roomId);
         System.out.println("Nhập thông tin mới: ");
         roomInstance.add(RoomCreate.createRoom());
-        System.out.println("Cập nhật thành công!!!");
+        System.out.println("🌸☆🌸　Cập nhật phòng thành công　🌸☆🌸");
     }
 
     public void roomOptionInformationById() {
@@ -69,7 +69,7 @@ public class RoomOption {
             status = roomInstance.getRoomList().get(index).getStatus();
         }
         roomInstance.delete(roomId);
-        System.out.println("Đã xóa thành công!");
+        System.out.println("🌸☆🌸　Xóa phòng thành công　🌸☆🌸");
     }
 
     public void roomOptionInformationByPrice() {

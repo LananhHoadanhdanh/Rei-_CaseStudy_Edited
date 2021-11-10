@@ -30,7 +30,7 @@ public class ReceiptOption {
     public void receiptOptionDeleteById() throws IOException, ParseException {
         String receiptId = ReceiptCreate.createOldReceiptId();
         receiptInstance.delete(receiptId);
-        System.out.println("Đã xóa thành công!");
+        System.out.println("🌸☆🌸　Xóa hóa đơn thành công　🌸☆🌸");
     }
 
     public void receiptOptionFindByDay() throws ParseException, IOException {
