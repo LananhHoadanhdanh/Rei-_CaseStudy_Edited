@@ -13,9 +13,11 @@ public class UserCreate {
     public static String createLoginUserName() {
         System.out.print("Nhập tên đăng nhập: ");
         String username = SCANNER.nextLine();
-        while (UserManage.getUserInstance().findIndexByUsername(username) == -1 || !Validation.validateString(username, Validation.LOGIN_NAME_REGEX)) {
+        int count = 0;
+        while (count < 2 && (UserManage.getUserInstance().findIndexByUsername(username) == -1 || !Validation.validateString(username, Validation.LOGIN_NAME_REGEX))) {
             System.err.println("Tên đăng nhập không đúng hoặc không hợp lệ. Vui lòng nhập lại. (8-16 kí tự, không gồm kí tự đặc biệt)");
             username = SCANNER.nextLine();
+            count++;
         }
         return username;
     }

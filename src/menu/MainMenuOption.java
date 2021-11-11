@@ -65,17 +65,19 @@ public class MainMenuOption {
         UserManage userInstance = UserManage.getUserInstance();
         try {
             UserFileIO.readUserFromFile();
-        } catch (FileNotFoundException ignored) {
+        } catch (FileNotFoundException | NumberFormatException ignored) {
             System.err.println("Hệ thống chưa có dữ liệu tài khoản. Chọn 2 để đăng kí tài khoản mới");
         }
         try {
             RoomFileIO.readRoomFromFile();
-        } catch (FileNotFoundException ignored) { }
+        } catch (FileNotFoundException | NumberFormatException ignored) {
+            System.out.println("Không tìm thấy dữ liệu phòng có sẵn.");
+        }
 
         try {
             ReceiptFileIO.readReceiptFromFile();
-        } catch (FileNotFoundException ignored) {
-
+        } catch (FileNotFoundException | NumberFormatException ignored) {
+            System.out.println("Không tìm thấy dữ liệu hóa đơn có sẵn.");
         }
 
         int choice;
@@ -85,7 +87,11 @@ public class MainMenuOption {
             choice = createChoiceMenu();
             switch (choice) {
                 case 1:
-                    loginToSystem();
+                    try {
+                        loginToSystem();
+                    } catch (ArrayIndexOutOfBoundsException ignored) {
+                        System.err.println("Chọn 2 để đăng kí tài khoản mới");
+                    }
                     break;
                 case 2:
                     userInstance.add(UserCreate.createUser());
@@ -96,26 +102,34 @@ public class MainMenuOption {
                     String username = UserCreate.createLoginUserName();
                     System.out.print("Nhập mật khẩu: ");
                     String password = scanner.nextLine();
-                    if (login(username, password)) {
-                        userInstance.deleteUser(username);
-                        System.out.println("Nhập thông tin mới.");
-                        userInstance.add(UserCreate.createUser());
-                        System.out.println("🌸☆🌸　Cập nhật thông tin thành công　🌸☆🌸");
-                        System.out.println();
-                    } else {
-                        System.err.println("Mật khẩu sai!");
+                    try {
+                        if (login(username, password)) {
+                            userInstance.deleteUser(username);
+                            System.out.println("Nhập thông tin mới.");
+                            userInstance.add(UserCreate.createUser());
+                            System.out.println("🌸☆🌸　Cập nhật thông tin thành công　🌸☆🌸");
+                            System.out.println();
+                        } else {
+                            System.err.println("Mật khẩu sai!");
+                        }
+                    } catch (ArrayIndexOutOfBoundsException ignored) {
+                        System.err.println("Chọn 2 để đăng kí tài khoản mới");
                     }
                     break;
                 case 4:
                     String usernameDelete = UserCreate.createLoginUserName();
                     System.out.print("Nhập mật khẩu: ");
                     String passwordDelete = scanner.nextLine();
-                    if (login(usernameDelete, passwordDelete)) {
-                        userInstance.getUserList().remove(userInstance.findIndexByUsername(usernameDelete));
-                        System.out.println("🌸☆🌸　Xóa tài khoản thành công　🌸☆🌸");
-                        System.out.println();
-                    } else {
-                        System.err.println("Mật khẩu sai!");
+                    try {
+                        if (login(usernameDelete, passwordDelete)) {
+                            userInstance.getUserList().remove(userInstance.findIndexByUsername(usernameDelete));
+                            System.out.println("🌸☆🌸　Xóa tài khoản thành công　🌸☆🌸");
+                            System.out.println();
+                        } else {
+                            System.err.println("Mật khẩu sai!");
+                        }
+                    } catch (ArrayIndexOutOfBoundsException ignored) {
+                        System.err.println("Chọn 2 để đăng kí tài khoản mới");
                     }
                     break;
                 case 0:
