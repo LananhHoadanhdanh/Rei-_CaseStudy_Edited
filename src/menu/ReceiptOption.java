@@ -35,10 +35,10 @@ public class ReceiptOption {
     }
 
     public void receiptOptionFindByDay() throws ParseException, IOException {
-        System.out.println("Nhập ngày check-in (định dạng dd/MM/yyyy): ");
+        System.out.println("Nhập ngày bắt đầu (định dạng dd/MM/yyyy): ");
         String startTime = ReceiptCreate.createNewDate();
 
-        System.out.println("Nhập ngày check-out (định dạng dd/MM/yyyy): ");
+        System.out.println("Nhập ngày kết thúc (định dạng dd/MM/yyyy): ");
         String endTime = ReceiptCreate.createNewDate();
         while (DateCalculator.dateCompare(startTime, endTime) > 0) {
             if (DateCalculator.dateCompare(startTime, endTime) > 0) {
