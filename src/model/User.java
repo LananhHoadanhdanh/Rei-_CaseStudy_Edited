@@ -1,16 +1,5 @@
 package model;
 
-import service.create_object.ReceiptCreate;
-import service.create_object.UserCreate;
-import service.file_IO.RoomFileIO;
-import service.manage.ReceiptManage;
-import service.manage.RoomManage;
-
-import java.io.IOException;
-import java.text.ParseException;
-import java.time.format.DateTimeFormatter;
-import java.util.Scanner;
-
 public class User {
     private String fullName;
     private int age;
