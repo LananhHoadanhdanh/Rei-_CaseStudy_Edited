@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class ReceiptFileIO {
-
     public static void writeReceiptToFile() throws IOException, ParseException {
         ArrayList<Receipt> receiptList = ReceiptManage.getReceiptInstance().getReceiptList();
         Collections.sort(receiptList);

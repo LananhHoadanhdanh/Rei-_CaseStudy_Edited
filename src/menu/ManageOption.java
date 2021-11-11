@@ -70,6 +70,8 @@ public class ManageOption {
                 case 4:
                     receiptOption.receiptOptionFindByDay();
                     break;
+                default:
+                    System.out.println("Không có tùy chọn, vui lòng nhập lại!");
             }
         }
     }

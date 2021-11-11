@@ -54,6 +54,8 @@ public class MainMenuOption {
                     case 3:
                         ManageOption.receiptManageOption();
                         break;
+                    default:
+                        System.out.println("Không có tùy chọn, vui lòng nhập lại!");
                 }
             }
         } else {
