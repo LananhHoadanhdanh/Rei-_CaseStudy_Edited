@@ -5,7 +5,7 @@ import model.Room;
 import model.User;
 import service.create_object.ReceiptCreate;
 import service.create_object.UserCreate;
-import service.file_IO.RoomFileIO;
+import service.file_IO.RoomFileCsvIO;
 
 import java.io.*;
 import java.text.ParseException;
@@ -37,12 +37,12 @@ public class RoomManage {
 
     public void add(Room room) throws IOException, ParseException {
         roomList.add(room);
-        RoomFileIO.writeRoomToFile();
+        RoomFileCsvIO.writeRoomToFile();
     }
 
     public void delete(int id) throws IOException {
         roomList.remove(findIndexById(id));
-        RoomFileIO.writeRoomToFile();
+        RoomFileCsvIO.writeRoomToFile();
     }
 
     public int findIndexById(int id) {
@@ -110,7 +110,7 @@ public class RoomManage {
         if (room.getStatus().equals(Room.READY)) {
             room.setStatus(Room.OCCUPIED);
             room.setLastCheckIn(java.time.LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
-            RoomFileIO.writeRoomToFile();
+            RoomFileCsvIO.writeRoomToFile();
             System.out.println("Đã hoàn tất thủ tục check-in. Thời gian: " + java.time.LocalDate.now());
             System.out.println();
         } else {
@@ -133,7 +133,7 @@ public class RoomManage {
             ReceiptManage.getReceiptInstance().add(receipt);
             room.setStatus(Room.ON_CHANGE);
             room.setLastCheckOut(checkOutTime);
-            RoomFileIO.writeRoomToFile();
+            RoomFileCsvIO.writeRoomToFile();
             System.out.println("Đã hoàn tất thủ tục check-out. Thời gian: " + java.time.LocalDate.now());
             System.out.println();
             System.out.println("_____________________________________*** Thông tin hóa đơn *** _____________________________________");
@@ -152,7 +152,7 @@ public class RoomManage {
         Room room = roomInstance.getRoomList().get(roomInstance.findIndexById(roomId));
         if (room.getStatus().equals(Room.ON_CHANGE)) {
             room.setStatus(Room.READY);
-            RoomFileIO.writeRoomToFile();
+            RoomFileCsvIO.writeRoomToFile();
             System.out.println("🌸☆🌸　Đã dọn dẹp phòng xong　🌸☆🌸");
             System.out.println();
         } else {

@@ -1,10 +1,5 @@
 package model;
 
-import service.file_IO.RoomFileIO;
-
-import java.io.IOException;
-import java.time.format.DateTimeFormatter;
-
 public class Room implements Comparable<Room>{
     public static final String OCCUPIED = "Đang có khách thuê";
     public static final String ON_CHANGE = "Đang dọn dẹp";

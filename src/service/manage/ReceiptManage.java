@@ -2,7 +2,7 @@ package service.manage;
 
 import model.DateCalculator;
 import model.Receipt;
-import service.file_IO.ReceiptFileIO;
+import service.file_IO.ReceiptFileCsvIO;
 
 import java.io.*;
 import java.text.ParseException;
@@ -32,12 +32,12 @@ public class ReceiptManage{
 
     public void add(Receipt receipt) throws IOException, ParseException {
         receiptList.add(receipt);
-        ReceiptFileIO.writeReceiptToFile();
+        ReceiptFileCsvIO.writeReceiptToFile();
     }
 
     public void delete(String id) throws IOException, ParseException {
         receiptList.remove(findIndexById(id));
-        ReceiptFileIO.writeReceiptToFile();
+        ReceiptFileCsvIO.writeReceiptToFile();
     }
 
     public void displayAllReceipt() {

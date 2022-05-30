@@ -8,7 +8,7 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class ReceiptFileIO {
+public class ReceiptFileCsvIO {
     public static void writeReceiptToFile() throws IOException, ParseException {
         ArrayList<Receipt> receiptList = ReceiptManage.getReceiptInstance().getReceiptList();
         Collections.sort(receiptList);

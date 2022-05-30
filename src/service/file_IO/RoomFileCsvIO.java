@@ -8,7 +8,7 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class RoomFileIO {
+public class RoomFileCsvIO {
 
     public static void writeRoomToFile() throws IOException {
         ArrayList<Room> roomList = RoomManage.getRoomInstance().getRoomList();

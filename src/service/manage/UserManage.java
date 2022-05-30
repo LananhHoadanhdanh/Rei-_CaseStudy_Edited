@@ -1,7 +1,7 @@
 package service.manage;
 
 import model.User;
-import service.file_IO.UserFileIO;
+import service.file_IO.UserFileCsvIO;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -30,12 +30,12 @@ public class UserManage {
 
     public void add(User user) throws IOException {
         usersList.add(user);
-        UserFileIO.writeUserToFile();
+        UserFileCsvIO.writeUserToFile();
     }
 
     public void deleteUser(String username) throws IOException {
         usersList.remove(findIndexByUsername(username));
-        UserFileIO.writeUserToFile();
+        UserFileCsvIO.writeUserToFile();
     }
 
     public int findIndexByUsername(String username){
@@ -58,5 +58,9 @@ public class UserManage {
         } else {
             System.err.println("Sai tên đăng nhập.");
         }
+    }
+
+    public static void main(String[] args) {
+
     }
 }

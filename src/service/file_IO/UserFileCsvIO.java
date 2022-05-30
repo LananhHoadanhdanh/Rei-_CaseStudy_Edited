@@ -6,7 +6,7 @@ import service.manage.UserManage;
 import java.io.*;
 import java.util.ArrayList;
 
-public class UserFileIO {
+public class UserFileCsvIO {
     public static void writeUserToFile() throws IOException {
         ArrayList<User> usersList = UserManage.getUserInstance().getUserList();
         FileWriter fileWriter = new FileWriter("src/service/file_IO/userManageFile.csv");

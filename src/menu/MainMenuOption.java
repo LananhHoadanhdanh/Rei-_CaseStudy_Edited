@@ -1,9 +1,9 @@
 package menu;
 
 import service.create_object.UserCreate;
-import service.file_IO.ReceiptFileIO;
-import service.file_IO.RoomFileIO;
-import service.file_IO.UserFileIO;
+import service.file_IO.ReceiptFileCsvIO;
+import service.file_IO.RoomFileCsvIO;
+import service.file_IO.UserFileCsvIO;
 import service.manage.UserManage;
 
 import java.io.FileNotFoundException;
@@ -66,18 +66,18 @@ public class MainMenuOption {
     public static void main(String[] args) throws IOException, ParseException {
         UserManage userInstance = UserManage.getUserInstance();
         try {
-            UserFileIO.readUserFromFile();
+            UserFileCsvIO.readUserFromFile();
         } catch (FileNotFoundException | NumberFormatException ignored) {
             System.err.println("Hệ thống chưa có dữ liệu tài khoản. Chọn 2 để đăng kí tài khoản mới");
         }
         try {
-            RoomFileIO.readRoomFromFile();
+            RoomFileCsvIO.readRoomFromFile();
         } catch (FileNotFoundException | NumberFormatException ignored) {
             System.out.println("Không tìm thấy dữ liệu phòng có sẵn.");
         }
 
         try {
-            ReceiptFileIO.readReceiptFromFile();
+            ReceiptFileCsvIO.readReceiptFromFile();
         } catch (FileNotFoundException | NumberFormatException ignored) {
             System.out.println("Không tìm thấy dữ liệu hóa đơn có sẵn.");
         }
